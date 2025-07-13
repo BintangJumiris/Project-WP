@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - NusaTravel.ID</title>
+  <link rel="stylesheet" href="../style.css"> </head>
+<body>
+
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Admin Login</h2>
+      <form id="admin-login-form" onsubmit="handleAdminLogin(event)">
+        <div class="input-group">
+          <label for="adminUsername">Username</label>
+          <input type="text" id="adminUsername" name="username" placeholder="Masukkan Username" required>
+        </div>
+        <div class="input-group">
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" name="password" placeholder="Masukkan Password" required>
+        </div>
+        <button type="submit">Masuk</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../script.js"></script> </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Pemesanan - NusaTravel</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; background: #f5f5f5; color: #333; text-align: center; padding-top: 80px; }
+    form {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #e91e63;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover { background: #d81b60; }
+  </style>
+</head>
+<body>
+  <h1>Form Pemesanan</h1>
+  <form action="pembayaran.html" method="GET">
+  <input type="text" name="nama" placeholder="Nama Lengkap" required />
+  <input type="email" name="email" placeholder="Email" required />
+  <select name="destinasi" required>
+    <option value="">Pilih Destinasi</option>
+    <option value="bali">Bali</option>
+    <option value="yogyakarta">Yogyakarta</option>
+    <option value="rajaampat">Raja Ampat</option>
+    <option value="lombok">Lombok</option>
+    <option value="labuanbajo">Labuan Bajo</option>
+    <option value="danautoba">Danau Toba</option>
+  </select>
+  <button type="submit">Kirim Pemesanan</button>
+</form>
+    <form action="project/pembayaran.html" method="GET">
+  </form>
+  // simpan ke localStorage
+const data = {
+  nama: document.getElementById('namaLengkap').value,
+  email: document.getElementById('email').value,
+  destinasi: document.getElementById('destinasiPilihan').value,
+  jumlah: document.getElementById('jumlahTiket').value
+};
+
+const semua = JSON.parse(localStorage.getItem('pemesananList')) || [];
+semua.push(data);
+localStorage.setItem('pemesananList', JSON.stringify(semua));
+</body>
+</html>

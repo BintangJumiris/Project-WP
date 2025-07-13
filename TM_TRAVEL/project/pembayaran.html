@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pembayaran - NusaTravel</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      text-align: center;
+      padding-top: 80px;
+    }
+    form {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #e91e63;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #d81b60;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pilih Metode Pembayaran</h1>
+  <form id="formPembayaran">
+    <select name="metode" id="metodeBayar" required>
+      <option value="">Pilih Metode</option>
+      <option value="transfer">Transfer Bank</option>
+      <option value="ewallet">E-Wallet</option>
+      <option value="qris">QRIS</option>
+    </select>
+    <input type="file" name="bukti" id="buktiBayar" accept="image/*" required />
+    <button type="submit" id="submitBayar">Kirim Pembayaran</button>
+  </form>
+
+  <script>
+    document.getElementById("formPembayaran").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const metode = document.getElementById("metodeBayar").value;
+      const bukti = document.getElementById("buktiBayar").files[0];
+
+      if (!metode || !bukti) {
+        alert("Lengkapi metode & bukti pembayaran.");
+        return;
+      }
+
+      // Redirect ke halaman konfirmasi
+      window.location.href = "konfirmasi.html";
+    });
+  </script>
+</body>
+</html>

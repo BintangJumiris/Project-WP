@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - NusaTravel.ID</title>
+  <link rel="stylesheet" href="../style.css"> <style>
+    /* Styling khusus untuk tabel di dashboard admin */
+    #pemesananTable thead th {
+        background-color: #2196f3;
+        color: white;
+    }
+    #pemesananTable tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    #pemesananTable tbody tr:hover {
+        background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Admin Panel</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#" class="active" onclick="showSection('dashboard', this)">Dashboard</a></li>
+        <li><a href="#" onclick="showSection('destinasi', this)">Destinasi</a></li>
+        <li><a href="#" onclick="showSection('pemesanan', this)">Pemesanan</a></li>
+        <li><a href="#" onclick="showSection('media', this)">Media</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="adminLogout()">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section id="dashboard" class="content-section">
+        <h2>Dashboard</h2>
+        <div class="dashboard-cards-container">
+          <div class="dashboard-card blue">
+            <h3>Total Pemesanan</h3>
+            <p id="totalPemesanan">0</p>
+            <a href="#" onclick="showSection('pemesanan', document.querySelector('.sidebar-menu a[onclick*=\'pemesanan\']'))">Lihat Detail</a>
+          </div>
+          <div class="dashboard-card orange">
+            <h3>Pemesanan Menunggu</h3>
+            <p id="pemesananMenunggu">0</p>
+            <a href="#" onclick="showSection('pemesanan', document.querySelector('.sidebar-menu a[onclick*=\'pemesanan\']'))">Verifikasi Sekarang</a>
+          </div>
+          <div class="dashboard-card green">
+            <h3>Destinasi Aktif</h3>
+            <p>6</p>
+            <a href="#" onclick="showSection('destinasi', document.querySelector('.sidebar-menu a[onclick*=\'destinasi\']'))">Kelola Destinasi</a>
+          </div>
+          <div class="dashboard-card red">
+            <h3>Media Unggahan</h3>
+            <p>15</p>
+            <a href="#" onclick="showSection('media', document.querySelector('.sidebar-menu a[onclick*=\'media\']'))">Lihat Media</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="destinasi" class="content-section hidden">
+        <h2>Kelola Destinasi</h2>
+        <div class="form-container">
+            <h3>Tambah Destinasi Baru</h3>
+            <form id="addDestinasiForm">
+                <input type="text" placeholder="Nama Destinasi" required>
+                <input type="number" placeholder="Harga" required>
+                <input type="file" accept="image/*">
+                <button type="submit">Tambah Destinasi</button>
+            </form>
+        </div>
+
+        <h3>Daftar Destinasi</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Destinasi</th>
+                    <th>Harga</th>
+                    <th>Gambar</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bali</td>
+                    <td>Rp1.500.000</td>
+                    <td><img src="../assets/images/bali.png" alt="Bali" width="50"></td>
+                    <td class="action-buttons">
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Yogyakarta</td>
+                    <td>Rp1.200.000</td>
+                    <td><img src="../assets/images/yogyakarta.png" alt="Yogyakarta" width="50"></td>
+                    <td class="action-buttons">
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Hapus</button>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>Raja Ampat</td>
+                    <td>Rp3.200.000</td>
+                    <td><img src="../assets/images/rajaampat.png" alt="Raja Ampat" width="50"></td>
+                    <td class="action-buttons">
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lombok</td>
+                    <td>Rp1.800.000</td>
+                    <td><img src="../assets/images/lombok.png" alt="Lombok" width="50"></td>
+                    <td class="action-buttons">
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Labuan Bajo</td>
+                    <td>Rp2.500.000</td>
+                    <td><img src="../assets/images/labuanbajo.png" alt="Labuan Bajo" width="50"></td>
+                    <td class="action-buttons">
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Danau Toba</td>
+                    <td>Rp2.800.000</td>
+                    <td><img src="../assets/images/danautoba.png" alt="Danau Toba" width="50"></td>
+                    <td class="action-buttons">
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Hapus</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </section>
+
+      <section id="pemesanan" class="content-section hidden">
+        <h2>Daftar Pemesanan</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tanggal Pesan</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Destinasi</th>
+                    <th>Jumlah Tiket</th>
+                    <th>Total Harga</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="pemesananTable">
+                </tbody>
+        </table>
+      </section>
+
+      <section id="media" class="content-section hidden">
+        <h2>Kelola Media</h2>
+        <div class="form-container">
+            <h3>Unggah Media Baru</h3>
+            <form id="uploadMediaForm">
+                <input type="file" accept="image/*" multiple required>
+                <button type="submit">Unggah</button>
+            </form>
+        </div>
+
+        <h3>Galeri Media</h3>
+        <div class="media-gallery-container">
+            <div class="media-item">
+                <img src="../assets/images/nari.png" alt="Nari">
+                <button>Hapus</button>
+            </div>
+            <div class="media-item">
+                <img src="../assets/images/toba.png" alt="Toba">
+                <button>Hapus</button>
+            </div>
+            <div class="media-item">
+                <img src="../assets/images/ramai.png" alt="Ramai">
+                <button>Hapus</button>
+            </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../script.js"></script> </body>
+</html>
